@@ -168,7 +168,7 @@ const CAPTURE_MENU_ACTIONS = [
 const PERIOD_ACTIONS = [
   {
     icon: "calendar-days",
-    label: "Today",
+    label: "今天",
     description: "打开或创建今天的笔记。",
     command: "quickadd:choice:lifeos-daily",
   },
@@ -207,7 +207,7 @@ const DESTINATIONS = [
   },
   {
     icon: "folder-kanban",
-    label: "Projects",
+    label: "项目",
     description: "过一遍活跃项目和想法。",
     path: "00 Dashboards/Projects Dashboard.md",
   },
@@ -220,23 +220,23 @@ const DESTINATIONS = [
 ];
 
 const NAV_ITEMS = [
-  { id: "home", icon: "home", label: "Home" },
-  { id: "today", icon: "sun", label: "Today" },
-  { id: "plan", icon: "calendar-range", label: "Plan" },
-  { id: "focus", icon: "crosshair", label: "Focus" },
-  { id: "review", icon: "line-chart", label: "Review" },
-  { id: "projects", icon: "folder-kanban", label: "Projects" },
-  { id: "people", icon: "users", label: "People" },
-  { id: "create", icon: "pen-tool", label: "Create" },
+  { id: "home", icon: "home", label: "首页" },
+  { id: "today", icon: "sun", label: "今天" },
+  { id: "plan", icon: "calendar-range", label: "计划" },
+  { id: "focus", icon: "crosshair", label: "专注" },
+  { id: "review", icon: "line-chart", label: "复盘" },
+  { id: "projects", icon: "folder-kanban", label: "项目" },
+  { id: "people", icon: "users", label: "人物" },
+  { id: "create", icon: "pen-tool", label: "创作" },
   { id: "library", icon: "library", label: "书库" },
-  { id: "brain", icon: "brain", label: "Brain" },
+  { id: "brain", icon: "brain", label: "大脑" },
   { id: "ai", icon: "sparkles", label: "AI" },
 ];
 
 const MODULES = {
   today: {
     eyebrow: "每日操作系统",
-    title: "Today",
+    title: "今天",
     description:
       "选定要紧的，记下发生的，诚实地合上这一天。",
     actions: [
@@ -258,20 +258,20 @@ const MODULES = {
   },
   plan: {
     eyebrow: "相连的时间层",
-    title: "Plan",
+    title: "计划",
     description:
       "让今天、本周、本季连着同一个方向。",
     actions: [
       ...PERIOD_ACTIONS,
       {
         icon: "folder-kanban",
-        label: "Projects",
+        label: "项目",
         description: "看活跃项目与季度对齐。",
         path: "00 Dashboards/Projects Dashboard.md",
       },
       {
         icon: "clock-3",
-        label: "Ideal week",
+        label: "Ideal 周",
         description: "检查计划有没有落进时间。",
         path: "03 Planning/Ideal Week.md",
       },
@@ -279,7 +279,7 @@ const MODULES = {
   },
   focus: {
     eyebrow: "注意力，不是噪音",
-    title: "Focus",
+    title: "专注",
     description:
       "看哪些承诺在抢注意力，回到要紧的事。",
     actions: [
@@ -311,7 +311,7 @@ const MODULES = {
   },
   review: {
     eyebrow: "证据优先于记忆",
-    title: "Review",
+    title: "复盘",
     description:
       "决定下一步改什么之前，先回看这些天和这些季。",
     actions: [
@@ -340,7 +340,7 @@ const MODULES = {
   },
   projects: {
     eyebrow: "有上下文的结果",
-    title: "Projects",
+    title: "项目",
     description:
       "把结果、下一步、人物、笔记和季度承诺放在一起。",
     actions: [
@@ -378,7 +378,7 @@ const MODULES = {
   },
   people: {
     eyebrow: "有记忆的关系",
-    title: "People",
+    title: "人物",
     description:
       "把跟进、会议背景和讨论项带回关系里。",
     actions: [
@@ -509,7 +509,7 @@ class LifeOSCaptureModal extends Modal {
     const root = this.contentEl;
     root.empty();
     root.addClass("life-os-capture-modal");
-    root.createEl("h2", { text: "Capture" });
+    root.createEl("h2", { text: "捕捉" });
     root.createEl("p", {
       text: "说清这是什么。Life OS 会送去该去的地方。",
     });
@@ -704,7 +704,7 @@ class LifeOSHomeView extends ItemView {
     this.renderSetupBanner(shell);
     const overview = shell.createDiv({ cls: "life-os-home-overview" });
     const now = overview.createEl("section", { cls: "life-os-home-now" });
-    now.createEl("h2", { text: "Now" });
+    now.createEl("h2", { text: "现在" });
     this.renderTaskLive(now, { limit: 3, attention: true });
     if (this.visualEnabled()) {
       const card = overview.createEl("section", { cls: "life-os-brain-card" });
@@ -718,7 +718,7 @@ class LifeOSHomeView extends ItemView {
 
     this.renderActionSection(
       shell,
-      "Capture",
+      "捕捉",
       "不打断心流，先把东西放进系统。",
       CAPTURE_ACTIONS,
       (action) => this.runCommand(action.command, action.label)
@@ -933,14 +933,14 @@ class LifeOSHomeView extends ItemView {
     context.createEl("strong", { text: this.getScreenTitle() });
 
     const actions = topbar.createDiv({ cls: "life-os-topbar-actions" });
-    this.addTopbarButton(actions, "search", "Search", () => {
-      this.runCommand("global-search:open", "Search");
+    this.addTopbarButton(actions, "search", "搜索", () => {
+      this.runCommand("global-search:open", "搜索");
     });
-    this.addTopbarButton(actions, "settings-2", "Configure", () => {
+    this.addTopbarButton(actions, "settings-2", "设置", () => {
       void this.openPath("Meta/Compass Config.md");
     });
     const display = actions.createEl("details", { cls: "life-os-display-options" });
-    display.createEl("summary", { text: "View" });
+    display.createEl("summary", { text: "视图" });
     const options = display.createDiv();
     options.createEl("p", { text: "只影响本视图。库设置未变。" });
     const density = options.createEl("button", { text: this.compactLayout ? "用宽松间距" : "用紧凑间距" });
@@ -962,7 +962,7 @@ class LifeOSHomeView extends ItemView {
     const reset = options.createEl("button", { text: "恢复默认视图" });
     reset.type = "button";
     this.registerDomEvent(reset, "click", () => { this.showVisuals = true; this.visualOptions = {}; this.itemLimit = 6; this.compactLayout = false; this.focusGroup = "all"; this.libraryStatus = "all"; this.libraryType = "all"; this.pipelinePath = null; this.render(true); });
-    this.addTopbarButton(actions, "plus", "Capture", () => {
+    this.addTopbarButton(actions, "plus", "捕捉", () => {
       this.plugin.openCapture();
     }, true);
   }
@@ -1273,7 +1273,7 @@ class LifeOSHomeView extends ItemView {
     const horizons = [
       {
         icon: "sun",
-        label: "Today",
+        label: "今天",
         period: moment().format("D MMM"),
         path: `${paths.daily}/${moment().format("YYYY-MM-DD")}.md`,
         command: "quickadd:choice:lifeos-daily",
@@ -1305,7 +1305,7 @@ class LifeOSHomeView extends ItemView {
       section,
       "相连的时间层",
       "每层的正式笔记一建，这层就绪。",
-      `${horizons.filter((item) => this.fileExists(item.path)).length} of ${horizons.length} notes created`
+      `${horizons.filter((item) => this.fileExists(item.path)).length} of ${horizons.length} 篇笔记已建`
     );
     const grid = section.createDiv({ cls: "life-os-horizon-grid" });
     for (const horizon of horizons) {
@@ -1647,7 +1647,7 @@ class LifeOSHomeView extends ItemView {
       const discussion = section.createDiv({ cls: "life-os-discussion-queue" });
       discussion.createEl("h3", { text: "打开会话" });
       const entries = visible.flatMap(file => this.tasksForRecord(file, "p").filter(task => task.discuss).map(task => ({ file, task })));
-      discussion.createEl("p", { text: this.taskSnapshot && !this.taskSnapshot.error ? `${entries.length} indexed person-discussion links${this.taskSnapshot.state === "partial" ? " · partial index" : ""}. Explicit person tags only.` : "任务索引不可用。" });
+      discussion.createEl("p", { text: this.taskSnapshot && !this.taskSnapshot.error ? `${entries.length} indexed person-discussion 条链接${this.taskSnapshot.state === "partial" ? " · partial index" : ""}. Explicit person tags only.` : "任务索引不可用。" });
       for (const {file, task} of entries.slice(0, this.itemLimit)) {
         const button = discussion.createEl("button", { text: `${this.getFileTitle(file)} · ${task.text}` });
         button.type = "button";
@@ -1929,7 +1929,7 @@ class LifeOSHomeView extends ItemView {
     const section = parent.createDiv({ cls: "life-os-focus-groups" });
     section.createEl("h2", { text: "注意力去哪了" });
     section.createEl("p", { text: "每个已索引未结任务一组。过期排程且无当前到期日的归入「其他」。部分索引可能漏任务。" });
-    for (const [id, label] of [["all", "All"], ["overdue", "已逾期"], ["today", "Today"], ["upcoming", "即将到来"], ["unscheduled", "Unscheduled / other"]]) {
+    for (const [id, label] of [["all", "All"], ["overdue", "已逾期"], ["today", "今天"], ["upcoming", "即将到来"], ["unscheduled", "Unscheduled / other"]]) {
       const count = this.taskSnapshot?.tasks.filter(task => id === "all" || this.taskGroup(task) === id).length;
       const button = section.createEl("button", { text: `${label} · ${count ?? "加载中"}`, attr: { "aria-pressed": String(this.focusGroup === id) } });
       button.type = "button";
@@ -1938,7 +1938,7 @@ class LifeOSHomeView extends ItemView {
     const total = this.taskSnapshot?.tasks.length || 0;
     if (total) {
       const bar = section.createDiv({ cls: "life-os-workload-bar", attr: { "aria-label": "已索引未结任务分布" } });
-      for (const [id, label] of [["overdue", "已逾期"], ["today", "Today"], ["upcoming", "即将到来"], ["unscheduled", "Unscheduled / other"]]) {
+      for (const [id, label] of [["overdue", "已逾期"], ["today", "今天"], ["upcoming", "即将到来"], ["unscheduled", "Unscheduled / other"]]) {
         const count = this.taskSnapshot.tasks.filter(task => this.taskGroup(task) === id).length;
         if (!count) continue;
         const segment = bar.createEl("button", { cls: `life-os-workload-segment is-${id}`, attr: { style: `flex:${count}`, "aria-label": `${label}: ${count} of ${total}`, title: `${label}: ${count} of ${total}` } });
@@ -1964,7 +1964,7 @@ class LifeOSHomeView extends ItemView {
             ? `${snapshot.unresolvedStatuses} unresolved status`
             : "",
           snapshot.examplesExcluded
-            ? `${snapshot.examplesExcluded} sample excluded`
+            ? `${snapshot.examplesExcluded} 篇示例已排除`
             : "",
         ]
           .filter(Boolean)
@@ -2107,7 +2107,7 @@ class LifeOSHomeView extends ItemView {
       {
         icon: "calendar-check",
         value: this.app.vault.getAbstractFileByPath(todayPath) ? "Ready" : "未创建",
-        label: "Today",
+        label: "今天",
       },
       {
         icon: "calendar-range",
@@ -2115,7 +2115,7 @@ class LifeOSHomeView extends ItemView {
         label: "本周",
       },
       { icon: "folder-kanban", value: activeProjects, label: "活跃项目" },
-      { icon: "users", value: typeCount(["person"]), label: "People" },
+      { icon: "users", value: typeCount(["person"]), label: "人物" },
       {
         icon: "pen-tool",
         value: typeCount(["newsletter", "youtube-script", "article", "course-lesson"]),
@@ -2227,7 +2227,7 @@ class LifeOSHomeView extends ItemView {
 }
 
 // Original Canvas renderer inspired by SEO OS's brain-shaped knowledge map.
-// Positions are decorative; every displayed edge comes from resolved vault links.
+// Positions are decorative; every displayed edge comes from resolved vault 条链接.
 class LifeOSBrainRenderer extends Component {
   constructor(app, contentEl, compact = false) {
     super();
@@ -2266,7 +2266,7 @@ class LifeOSBrainRenderer extends Component {
     title.createEl("h2", { text: "你的互联大脑" });
     this.summary = title.createEl("p", { text: "正在读库内链接…", attr: { "aria-live": "polite" } });
     const controls = header.createDiv({ cls: "life-os-brain-controls" });
-    const search = controls.createEl("input", { attr: { type: "search", placeholder: "Find a note…", "aria-label": "搜索大脑笔记" } });
+    const search = controls.createEl("input", { attr: { type: "search", placeholder: "找一篇笔记…", "aria-label": "搜索大脑笔记" } });
     this.registerDomEvent(search, "input", () => { this.query = search.value.toLowerCase(); this.update(); });
     const reset = controls.createEl("button", { text: "重置视图" });
     this.registerDomEvent(reset, "click", () => { this.panX = 0; this.panY = 0; this.yaw = 0.28; this.pitch = -0.12; this.zoom = 1; this.clearHover(); });
@@ -2532,7 +2532,7 @@ class LifeOSBrainRenderer extends Component {
     const visible = this.nodes.filter((node) => this.matches(node));
     const paths = new Set(visible.map((node) => node.path));
     const edgeCount = this.edges.filter(([a, b]) => paths.has(a) && paths.has(b)).length;
-    this.summary.setText(`${visible.length} notes · ${edgeCount} links · ${visible.filter((node) => node.sample).length} sample notes${this.total > this.nodes.length ? ` · showing ${this.nodes.length} of ${this.total}` : ""}`);
+    this.summary.setText(`${visible.length} 篇笔记 · ${edgeCount} 条链接 · ${visible.filter((node) => node.sample).length} 篇示例笔记${this.total > this.nodes.length ? ` · showing ${this.nodes.length} of ${this.total}` : ""}`);
     if (this.compact) { this.draw(); return; }
     this.panel.empty();
     const selected = this.nodes.find((node) => node.path === this.selected);
@@ -2549,7 +2549,7 @@ class LifeOSBrainRenderer extends Component {
     for (const node of [...list].sort((a, b) => b.degree - a.degree || a.path.localeCompare(b.path)).slice(0, 60)) {
       const button = this.panel.createEl("button", { cls: "life-os-brain-note", attr: { title: node.path } });
       button.createSpan({ text: node.title });
-      button.createEl("small", { text: `${node.degree} links${node.sample ? " · Sample" : ""}` });
+      button.createEl("small", { text: `${node.degree} 条链接${node.sample ? " · Sample" : ""}` });
       button.addEventListener("click", () => { this.selected = node.path; this.update(); });
     }
     if (list.length > 60) this.panel.createEl("p", { text: "Showing the 60 most connected notes. Search to narrow the list." });
@@ -2605,7 +2605,7 @@ class LifeOSBrainRenderer extends Component {
     }
     ctx.globalAlpha = 1;
     this.drawLabels(ctx, width, height, focus, connected);
-    this.caption.setText(edges.length > 10000 ? "10,000 links drawn. Select a note to isolate its connections." : "拖动旋转 · Shift 拖动平移 · 滚轮缩放 · 悬停或点击笔记");
+    this.caption.setText(edges.length > 10000 ? "10,000 条链接 drawn. Select a note to isolate its connections." : "拖动旋转 · Shift 拖动平移 · 滚轮缩放 · 悬停或点击笔记");
   }
   drawLabels(ctx, width, height, focus, connected) {
     const occupied = [];
